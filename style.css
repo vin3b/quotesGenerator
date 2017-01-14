@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Droid+Serif');
+
+body {
+  transition: background-color .5s ease-in-out;
+}
+
+h1 {
+  margin: 10% 0 2% 0;
+  font-family: Roboto;
+  letter-spacing: 1px;
+  font-weight: light;
+  text-align: center;
+  color: white;
+}
+
+footer {
+  font-family: Droid Serif;
+  text-align: center;
+  margin: 1%;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.fa {
+  transition: color .5s ease-in-out;
+}
+
+.whiteSpace {
+  background-color: white;
+  display: block;
+  margin: auto;
+  width: 700px;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.quoteArea {
+  margin: 5% 5% 0 5%;
+  text-align: center;
+}
+
+.tweetBtn {
+  margin-top: -65px;
+  margin-left: 5%;
+  border: 3px solid transparent;
+  width: 60px;
+  height: 65px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tweetBlock{
+  display: block;
+}
+.tweetBtn:hover .tweetOver {
+  margin-top: -59px;
+}
+.tweetOver {
+  transition: .5s cubic-bezier(.09,1.16,.28,1.21);
+}
+.tweetUnder {
+  transition: .5s cubic-bezier(.09,1.16,.28,1.21);
+}
+
+
+#givenQuote {
+  font-weight: lighter;
+  font-family: Roboto;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+#givenAuthor {
+  font-size: 25px;
+  font-family: Droid Serif;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  display: block;
+  text-align: right;
+  margin-top: 5%;
+  padding-bottom: 5%;
+  background-color: transparent;
+}
+
+.swooshText {
+  font-family: Roboto;
+  font-size: 30px;
+  display: block;
+  margin-top: 1%;
+  text-transform: uppercase;
+  text-align: center;
+}
+.swooshBtn {
+  background-color: transparent;
+  width: 200px;
+  height: 50px;
+  border: 3px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 65%;
+  margin-bottom: 10px;
+  transition: background-color .5s ease-in-out; border-color .5s ease-in-out;
+}
+.swooshBtn:hover .over {
+  margin-top: -23%;
+}
+.under {
+  transition: margin-top .5s cubic-bezier(.09,1.16,.28,1.21);
+  color: white;
+}
+.over {
+  transition: margin-top .5s cubic-bezier(.09,1.16,.28,1.21);
+}
