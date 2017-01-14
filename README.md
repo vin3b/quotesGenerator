@@ -1,3 +1,3 @@
 # quotesGenerator
 
-Just uploading my first project edited in Atom.io!
+Just uploading my second project edited in Atom.io!
