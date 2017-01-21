@@ -1,20 +1,27 @@
-var quotes = [];
-//allows for additional quotes to be hardcoded in as needed - try doing this with requesting quotes from server later
-quotes.push(["Some die at 25... we just don't bury them until 75", "Benjamin Franklin"]);
-quotes.push(["You don't have to be great to start, but you have to start to be great", "Zig Ziglar"]);
-quotes.push(["It doesn't matter how slowly you go, as long as you don't stop", "Confucious"]);
-quotes.push(["Work hard in silence, let your success be your noise", "Frank Ocean"]);
-quotes.push(["A ship is always safe at the shore, but that is not what it is built for", "Albert Einstein"]);
-quotes.push(["The journey of a thousand miles begins with a single step", "Lao Tzu"]);
-quotes.push(["Whether you think you can or you can't, you're right", "Henry Ford"]);
-// if add quotes - change math random in btnQuoteFunc
 
-var numQuote = 0;
+
 function btnQuoteFunc() {
-  numQuote = Math.floor(Math.random()*7);
-  // change this Math function to account for number of quotes
-  document.getElementById('givenQuote').innerHTML = quotes[numQuote][0];
-  $("#givenAuthor")[0].innerHTML = "- " + quotes[numQuote][1];
+  $.ajax({
+    url: 'http://api.forismatic.com/api/1.0/',
+    jsonp: 'jsonp',
+    dataType: 'jsonp',
+    data:{
+      method: 'getQuote',
+      lang: 'en',
+      format: 'jsonp'
+    },
+    success: function(response) {
+      // so that changes only happen once successful response
+      if (response.quoteAuthor) {
+      $('#givenAuthor')[0].innerHTML = "- " + response.quoteAuthor;
+    } else {
+      $('#givenAuthor')[0].innerHTML = "- unknown";
+    };
+    $('#givenQuote')[0].innerHTML = response.quoteText;
+    $('#givenQuote, #givenAuthor, .fa-quote-left, .fa-quote-right').fadeIn(500);
+    randomColors();
+    }
+    });
 }
 
 var newColor = "";
@@ -36,13 +43,15 @@ function randomColors() {
 btnQuoteFunc();
 randomColors();
 
-btnQuote.addEventListener("click", function(){
-  $('#givenQuote, #givenAuthor, .fa-quote-left, .fa-quote-right').fadeOut(500);
+btnQuote.addEventListener("click", function(event){
+  event.preventDefault();
+  $('#givenQuote, #givenAuthor, .fa-quote-left, .fa-quote-right').fadeOut(800);
+
   setTimeout(function(){
   btnQuoteFunc();
-  randomColors();
-}, 500);
-  $('#givenQuote, #givenAuthor, .fa-quote-left, .fa-quote-right').fadeIn("slow");
+  }, 500);
+
+
 });
 
 // ask about this mouseover retaining it's color during the transition
@@ -54,14 +63,17 @@ $("#btnQuote").hover(function(){
 
 
 $(".tweetBtn").click( function(){
-  // so you need to create the url first right?
-  var addToURL = "'" + quotes[numQuote][0] + "' - " + quotes[numQuote][1];
+  var addToURL = $('#givenQuote')[0].innerHTML + $('#givenAuthor')[0].innerHTML;
   var tweetURL = "https://twitter.com/intent/tweet?hashtags=dopequotes&text="+addToURL;
   window.open(tweetURL);
 });
-
 
 // next projects
 // figure how to add json quotes from another page
 // see if you can get this on a motivational background for next project and make downloadable
 // make this a fortune cookie quote generator
+// screw it, if you can't fix the mouseover problem, leave it and move on. volume over quality to gain experience
+
+
+// may want to change to changing background images
+// also use an quote api to work this
